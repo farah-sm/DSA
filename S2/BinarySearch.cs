@@ -1,50 +1,57 @@
 using System;
 
-namespace ConsoleApp1
+namespace ConsoleApp3
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            
-           
-            int number = 1;
+            int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 
-            int[] array = { 1, 2, 4, 12, 14, 18, 19, 20 };
-
-            // Console.WriteLine(array[0]);
-
-            int start = 0;
-            int end = (array.Length - 1) ;
-            bool flag = false;
-            
-            while (start <= end)
+            // This Method takes an array as a positional parameter
+            void MainMeth(int[] arr, int num)
             {
-              
-               
-                int middle = (start + end) / 2; 
+                int number = num;
+                int[] array = arr;
 
-                if (number == array[middle])
+                int start = 0;
+                int end = (array.Length - 1);
+                bool flag = false;
+
+                while (start <= end)
                 {
-                    Console.WriteLine("Element found: " + array[middle]);
-                    flag = true;
-                    break;
+
+
+                    int middle = (start + end) / 2;
+
+                    if (number == array[middle])
+                    {
+                        Console.WriteLine("Element found: " + array[middle]);
+                        flag = true;
+                        break;
+                    }
+                    else if (number < array[middle])
+                    {
+                        end = middle - 1;
+                    }
+                    else if (array[middle] < number)
+                    {
+                        start = middle + 1;
+                    }
+
                 }
-                else if (number < array[middle])
+
+                if (!flag)
                 {
-                     end = middle - 1;
+                    Console.WriteLine("Value not found");
                 }
-                else if (array[middle] < number)
-                {
-                     start = middle + 1;
-                }
-            
+
             }
 
-            if (!flag)
-            {
-                Console.WriteLine("Value not found");
-            }
+            MainMeth(array, 5);
+
+
+
         }
     }
 }
