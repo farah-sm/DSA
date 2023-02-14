@@ -12,9 +12,10 @@ public class HelloWorld
         Nodes head = node1;
         node1.next = node2;
         
-        node1.setItem(99);
+      
+        node1.setNext(node2);
         
-        Console.WriteLine($"{node1.next.getNext()}");
+       
         
     }
     
@@ -55,7 +56,9 @@ public class HelloWorld
        
        public Object getData(){ return this.data ; }
        
-        
+       public void setNext( Nodes next ){ this.next = next ; }
+       
+       public Nodes getNext(){ return this.next ; }
     }
     
     
@@ -71,17 +74,50 @@ public class HelloWorld
         
         public class LinkedList
     {
-        protected Node head = null;
+        protected Nodes head = null;
         protected int len = 0;
 
         // Make relevant Constructors 
-        public string address
+        public LinkedList()
         {
-            get;
-            set;
+            head = null;
+            len = 0;
+        }
+        
+        public bool isEmpty()
+        {
+            return (len == 0);
+        }
+        
+        public void insertAtHead( Object data )
+        {
+            Nodes newItem = new Nodes( data, head);
+            head = newItem;
+            len++;
         }
 
-        //Make Methods 
+
+        public bool insertAfter( Object newItem, Object afterItem)
+        {
+            // Find out what "findItem" is about? where have we previously defined this method
+            Nodes afterNode = findItem( afterItem ) ;
+            
+            if (afterNode != null)
+            {
+                Nodes newItemNode = new Nodes( newItem, afterNode.getNext() ) ;
+                afterNode.setNext( newItemNode ) ;
+                len++;
+                return true;
+            }
+            else 
+            { 
+                return false;
+            }
+        }
+        
+        //private ListNode findItem( Object item )
+        
+        //public void printList()
         
         
         
